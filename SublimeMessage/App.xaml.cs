@@ -13,5 +13,9 @@ namespace SublimeMessage
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Shutdown();
+        }
     }
 }
