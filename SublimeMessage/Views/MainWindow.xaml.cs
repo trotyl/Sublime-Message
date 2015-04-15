@@ -20,9 +20,16 @@ namespace SublimeMessage.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool IsPtopMode { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(bool isPtop) : this()
+        {
+            IsPtopMode = isPtop;
         }
     }
 }

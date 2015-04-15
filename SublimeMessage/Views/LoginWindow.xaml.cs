@@ -75,6 +75,7 @@ namespace SublimeMessage.Views
             {
                 name = idBox.Text;
             }
+            var mainWindow = new MainWindow(true);
         }
     }
 }

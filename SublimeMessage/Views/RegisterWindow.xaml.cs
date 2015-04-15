@@ -57,7 +57,17 @@ namespace SublimeMessage.Views
 
             mail = mailBox.Text ?? "";
             password = passwordBox.Text;
+
             var res = await ((App)App.Current).Carrier.SendRegisterRequest(name, mail, password);
+            if (res.Item1)
+            {
+                MessageBox.Show("注册成功，您的SM号为" + res.Item3);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("注册失败，错误码" + res.Item2);
+            }
         }
 
     }

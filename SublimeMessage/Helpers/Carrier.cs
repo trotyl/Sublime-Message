@@ -10,7 +10,9 @@ namespace SublimeMessage.Helpers
     {
         public async Task<Tuple<bool, int, string>> SendRegisterRequest(string name, string mail, string password)
         {
-            return await new Task<Tuple<bool, int, string>>(_sendRegisterRequest, new Tuple<string, string, string>(name, mail, password));
+            var task = new Task<Tuple<bool, int, string>>(_sendRegisterRequest, new Tuple<string, string, string>(name, mail, password));
+            task.Start();
+            return await task;
         }
 
         public async Task<Tuple<bool, int>> SendLoginRequest(string identifier, string password)
@@ -23,7 +25,7 @@ namespace SublimeMessage.Helpers
         
         private Tuple<bool, int, string> _sendRegisterRequest(object state)
         {
-            throw new NotImplementedException();
+            return new Tuple<bool, int, string>(true, 200, "495568205");
         }
         
         private Tuple<bool, int> _sendLoginRequest(object state)
