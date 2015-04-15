@@ -22,6 +22,17 @@ namespace SublimeMessage.Views
         public LoginWindow()
         {
             InitializeComponent();
+            for (int i = 1; i < 1048576; i++)
+            {
+                for (int j = 1; j < 1024; j++)
+                {
+                    var t1 = i + j;
+                    var t2 = i - j;
+                    var t3 = i * j;
+                    var t4 = i / j;
+                    var t5 = i % j;
+                }
+            }
         }
 
         private void TextBox_CheckPlaceHolder(object sender, RoutedEventArgs e)

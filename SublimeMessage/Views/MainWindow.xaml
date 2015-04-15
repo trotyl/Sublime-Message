@@ -1,8 +1,57 @@
 ﻿<Window x:Class="SublimeMessage.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="456" Width="256">
     <Grid>
-        
+        <TabControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,32">
+            <TabItem Header="在线用户">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线" Foreground="Red"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="我的好友">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：离线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：离线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线" Foreground="Red"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：离线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：在线"/>
+                        <TextBlock TextWrapping="Wrap" Text="余泽江（495568205）：离线"/>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="我的群组">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <TextBlock TextWrapping="Wrap" Text="群组1（11111111）"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组2（22222222）" Foreground="Red"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组3（33333333）"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组4（44444444）"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组5（55555555）"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组6（66666666）"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组7（77777777）"/>
+                        <TextBlock TextWrapping="Wrap" Text="群组8（88888888）"/>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid VerticalAlignment="Bottom" Height="32">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="addFriendButton" Content="添加好友" Margin="5" Padding="3,1"/>
+                <Button x:Name="addGroupButton" Content="添加群组" Margin="5" Padding="3,1"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
