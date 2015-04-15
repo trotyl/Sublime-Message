@@ -22,6 +22,26 @@ namespace SublimeMessage.Helpers
             return await task;
         }
 
+        public async Task<Tuple<bool, int, IEnumerable<string>>> SendUserListRequest()
+        {
+            var task = new Task<Tuple<bool, int, IEnumerable<string>>>(_sendUserListRequest, null);
+            task.Start();
+            return await task;
+        }
+
+        private Tuple<bool, int, IEnumerable<string>> _sendUserListRequest(object arg)
+        {
+            return new Tuple<bool, int, IEnumerable<string>>(true, 200, new List<string>
+            {
+                "余泽江（11111111）：在线",
+                "泽江余（22222222）：在线",
+                "江余泽（11111111）：在线",
+                "余江泽（11111111）：在线",
+                "江泽余（11111111）：在线",
+                "泽余江（11111111）：在线",
+            });
+        }
+
         
         private Tuple<bool, int, string> _sendRegisterRequest(object state)
         {

@@ -31,5 +31,22 @@ namespace SublimeMessage.Views
         {
             IsPtopMode = isPtop;
         }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var res = await ((App)App.Current).Carrier.SendUserListRequest();
+            if (!res.Item1)
+            {
+                MessageBox.Show("获取在线列表失败！错误码" + res.Item2);
+                return;
+            }
+
+            foreach (var user in res.Item3)
+            {
+                var block = new TextBlock();
+                block.Text = user;
+                onlineList.Items.Add(block);
+            }
+        }
     }
 }
