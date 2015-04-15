@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SublimeMessage.Views
 {
     /// <summary>
-    /// Login.xaml 的交互逻辑
+    /// LoginWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class Login : Window
+    public partial class LoginWindow : Window
     {
-        public Login()
+        public LoginWindow()
         {
             InitializeComponent();
         }
@@ -35,6 +35,12 @@ namespace SublimeMessage.Views
             {
                 box.Text = "";
             }
+        }
+
+        private void signUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            var signUpWindow = new RegisterWindow();
+            signUpWindow.ShowDialog();
         }
     }
 }
