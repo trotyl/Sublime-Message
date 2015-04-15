@@ -23,5 +23,18 @@ namespace SublimeMessage.Views
         {
             InitializeComponent();
         }
+
+        private void TextBox_CheckPlaceHolder(object sender, RoutedEventArgs e)
+        {
+            var box = (TextBox)sender;
+            if (box.Text == "")
+            {
+                box.Text = (string)box.Tag;
+            }
+            else if (box.Text == (string)box.Tag)
+            {
+                box.Text = "";
+            }
+        }
     }
 }
