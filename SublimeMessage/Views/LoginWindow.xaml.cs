@@ -42,5 +42,39 @@ namespace SublimeMessage.Views
             var signUpWindow = new RegisterWindow();
             signUpWindow.ShowDialog();
         }
+
+        private async void signInButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(idBox.Text) || idBox.Text == (string)idBox.Tag)
+            {
+                MessageBox.Show("用户名或邮箱无效！");
+                return;
+            }
+            var res = await ((App)App.Current).Carrier.SendLoginRequest(idBox.Text, passwordBox.Text);
+            if (res.Item1)
+            {
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("登录失败，错误码" + res.Item2);
+                return;
+            }
+        }
+
+        private void ptopButton_Click(object sender, RoutedEventArgs e)
+        {
+            string name;
+            if (string.IsNullOrWhiteSpace(idBox.Text) || idBox.Text == (string)idBox.Tag)
+            {
+                name = "User" + new Random().Next();
+            }
+            else
+            {
+                name = idBox.Text;
+            }
+        }
     }
 }

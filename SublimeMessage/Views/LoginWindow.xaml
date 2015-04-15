@@ -7,12 +7,12 @@
         <TabControl>
             <TabItem Header="我是客户端">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox Width="200" Height="32" VerticalAlignment="Top" Margin="0,30,0,0" Text="SM号/邮箱" Padding="0,7,0,0" Tag="SM号/邮箱" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center"/>
-                    <TextBox Width="200" Height="32" VerticalAlignment="Top" Margin="0,80,0,0" Text="密码" Padding="0,7,0,0" Tag="密码" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center" />
+                    <TextBox x:Name="idBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,30,0,0" Text="用户名/SM号/邮箱" Padding="0,7,0,0" Tag="用户名/SM号/邮箱" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="passwordBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,80,0,0" Text="密码" Padding="0,7,0,0" Tag="密码" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center" />
                     <Grid Margin="0,130,0,0" >
-                        <Button x:Name="signInButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="32,0,0,0" Content="登录" />
+                        <Button x:Name="signInButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="32,0,0,0" Content="登录" Click="signInButton_Click" />
                         <Button x:Name="signUpButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="114,0,0,0" Content="注册" Click="signUpButton_Click" />
-                        <Button x:Name="ptopButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="196,0,0,0" Content="内网模式" />
+                        <Button x:Name="ptopButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="196,0,0,0" Content="内网模式" Click="ptopButton_Click" />
                     </Grid>
                 </Grid>
             </TabItem>

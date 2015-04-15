@@ -37,7 +37,7 @@ namespace SublimeMessage.Views
             }
         }
 
-        private void registerButton_Click(object sender, RoutedEventArgs e)
+        private async void registerButton_Click(object sender, RoutedEventArgs e)
         {
             if (passwordBox.Text != confirmBox.Text)
             {
@@ -57,6 +57,7 @@ namespace SublimeMessage.Views
 
             mail = mailBox.Text ?? "";
             password = passwordBox.Text;
+            var res = await ((App)App.Current).Carrier.SendRegisterRequest(name, mail, password);
         }
 
     }

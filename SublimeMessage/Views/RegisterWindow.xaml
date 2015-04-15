@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="注册" Height="300" Width="300">
     <Grid Background="#FFE5E5E5">
-        <TextBox x:Name="nameBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,30,0,0" Text="昵称" Padding="0,7,0,0" Tag="昵称" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center"/>
+        <TextBox x:Name="nameBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,30,0,0" Text="用户名" Padding="0,7,0,0" Tag="用户名" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center"/>
         <TextBox x:Name="mailBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,80,0,0" Text="邮箱" Padding="0,7,0,0" Tag="邮箱" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center" />
         <TextBox x:Name="passwordBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,130,0,0" Text="密码" Padding="0,7,0,0" Tag="密码" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center"/>
         <TextBox x:Name="confirmBox" Width="200" Height="32" VerticalAlignment="Top" Margin="0,180,0,0" Text="确认密码" Padding="0,7,0,0" Tag="确认密码" GotFocus="TextBox_CheckPlaceHolder" LostFocus="TextBox_CheckPlaceHolder" HorizontalAlignment="Center" />

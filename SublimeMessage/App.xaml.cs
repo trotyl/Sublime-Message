@@ -1,4 +1,4 @@
-﻿using SublimeMessage.Interfaces;
+﻿using SublimeMessage.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,11 +14,11 @@ namespace SublimeMessage
     /// </summary>
     public partial class App : Application
     {
-        public ICarriable Carrier { get; set; }
+        public Carrier Carrier { get; set; }
 
         public App()
         {
-            Carrier = null;
+            Carrier = new Carrier();
         }
     }
 }
