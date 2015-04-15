@@ -46,7 +46,7 @@ namespace SublimeMessage.Views
             }
 
             string name, mail, password;
-            if (string.IsNullOrWhiteSpace(nameBox.Text))
+            if (string.IsNullOrWhiteSpace(nameBox.Text) || nameBox.Text == (string)nameBox.Tag)
             {
                 name = "User" + new Random().Next();
             }
