@@ -40,7 +40,7 @@
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Foreground" Value="Transparent"/>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                            <DataTrigger Binding="{Binding Path=Password, Source={x:Reference textSource}}" Value="">
                                                 <Setter Property="Foreground" Value="LightGray"/>
                                             </DataTrigger>
                                         </Style.Triggers>

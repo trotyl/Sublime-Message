@@ -77,5 +77,10 @@ namespace SublimeMessage.Views
             }
             var mainWindow = new MainWindow(true);
         }
+
+        private void passwordHolderBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            passwordBox.Focus();
+        }
     }
 }
