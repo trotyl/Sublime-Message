@@ -52,7 +52,7 @@ namespace SublimeMessage.Views
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }
