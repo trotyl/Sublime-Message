@@ -63,12 +63,14 @@
     <Compile Include="Carriers\RegesterFailedException.cs" />
     <Compile Include="Carriers\LoginFailedException.cs" />
     <Compile Include="Helpers\Validator.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Results\GetUsersResult.cs" />
     <Compile Include="Results\InitResult.cs" />
     <Compile Include="Results\LoginResult.cs" />
     <Compile Include="Results\RegesterResult.cs" />
     <Compile Include="Results\Result.cs" />
+    <Compile Include="ViewModels\ListsViewModel.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -122,9 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
