@@ -37,11 +37,16 @@ namespace SublimeMessage.Views
 
                 Validator.ValidateUsername(username);
                 Validator.ValidateEmail(email);
+                Validator.ValidatePassword(password);
+                Validator.ValidateEquality(password, confirmPassword);
             }
-            catch (Exception)
+            catch (ArgumentException argumentException)
             {
-
-                throw;
+                MessageBox.Show(argumentException.Message, "非法输入");
+            }
+            catch (CarrierException carrierException)
+            {
+                MessageBox.Show(carrierException.Message, "网络错误");
             }
         }
 

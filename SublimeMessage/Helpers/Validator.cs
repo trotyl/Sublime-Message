@@ -31,7 +31,15 @@ namespace SublimeMessage.Helpers
             var match = regex.Match(email);
             if (string.IsNullOrEmpty(email) || !match.Success)
             {
-                throw new ArgumentException("密码不能为空！");
+                throw new ArgumentException("电子邮件地址格式不正确！");
+            }
+        }
+
+        public static void ValidateEquality(string first, string second)
+        {
+            if (string.Compare(first, second) != 0)
+            {
+                throw new ArgumentException("两次输入的密码不匹配！");
             }
         }
     }
