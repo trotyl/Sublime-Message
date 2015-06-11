@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SublimeMessage.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,11 +46,19 @@ namespace SublimeMessage.Views
 
         private async void signInButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(idBox.Text) || idBox.Text == (string)idBox.Tag)
+            try
             {
-                MessageBox.Show("用户名或邮箱无效！");
-                return;
+                var username = idBox.Text;
+                var password = passwordBox.Text;
+                Validator.ValidateUsername(username);
+                Validator.ValidatePassword(password);
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
             var res = await ((App)App.Current).Carrier.SendLoginRequest(idBox.Text, passwordBox.Text);
             if (res.Item1)
             {
