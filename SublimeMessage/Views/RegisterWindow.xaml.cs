@@ -25,51 +25,14 @@ namespace SublimeMessage.Views
             InitializeComponent();
         }
 
-        private void TextBox_CheckPlaceHolder(object sender, RoutedEventArgs e)
+        private void submitButton_Click(object sender, RoutedEventArgs e)
         {
-            var box = (TextBox)sender;
-            if (box.Text == "")
-            {
-                box.Text = (string)box.Tag;
-            }
-            else if (box.Text == (string)box.Tag)
-            {
-                box.Text = "";
-            }
+
         }
 
-        private async void registerButton_Click(object sender, RoutedEventArgs e)
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (passwordBox.Text != confirmBox.Text)
-            {
-                MessageBox.Show("密码不一致！");
-                return;
-            }
 
-            string name, mail, password;
-            if (string.IsNullOrWhiteSpace(nameBox.Text) || nameBox.Text == (string)nameBox.Tag)
-            {
-                name = "User" + new Random().Next();
-            }
-            else
-            {
-                name = nameBox.Text;
-            }
-
-            mail = mailBox.Text ?? "";
-            password = passwordBox.Text;
-
-            var res = await Carrier.SendRegisterRequest(name, mail, password);
-            if (res.Item1)
-            {
-                MessageBox.Show("注册成功，您的SM号为" + res.Item3);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("注册失败，错误码" + res.Item2);
-            }
         }
-
     }
 }

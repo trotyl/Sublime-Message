@@ -3,14 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="登录" Height="220" Width="300">
     <Grid Background="#FFE6E6E6">
-        <Grid Background="#FFE5E5E5" Margin="0,0,0,20">
-            <TextBox Style="{StaticResource placeHolderTextBox}" x:Name="idBox" Width="200" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,30,0,0" Padding="5,7,0,0" Tag="用户名/SM号/邮箱" />
-            <TextBox Style="{StaticResource placeHolderTextBox}" x:Name="passwordBox" Width="200" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,80,0,0" Padding="5,7,0,0" Tag="密码" />
-            <Grid Margin="0,130,0,0" >
-                <Button x:Name="signInButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="32,0,0,0" Content="登录" Click="signInButton_Click" />
-                <Button x:Name="signUpButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="114,0,0,0" Content="注册" Click="signUpButton_Click" />
-                <Button x:Name="ptopButton" Width="64" Height="24" HorizontalAlignment="Left" Margin="196,0,0,0" Content="内网模式" Click="ptopButton_Click" />
+        <Grid Background="#FFE5E5E5" Margin="0,20,0,20">
+            <Grid Width="180" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Stretch">
+                    <TextBox Style="{StaticResource placeHolder}" x:Name="usernameBox" Height="32" Margin="0,10" Padding="5,7,0,0" Tag="用户名/SM号/邮箱" />
+                    <TextBox Style="{StaticResource placeHolder}" x:Name="passwordBox" Height="32" Margin="0,10" Padding="5,7,0,0" Tag="密码" />
+                </StackPanel>
             </Grid>
-        </Grid>          
+            <Grid Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="signInButton" Width="64" Margin="10,0" Content="登录" Click="signInButton_Click" />
+                    <Button x:Name="signUpButton" Width="64" Margin="10,0" Content="注册" Click="signUpButton_Click" />
+                    <Button x:Name="ptopButton" Width="64" Margin="10,0" Content="内网模式" Click="ptopButton_Click" />
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

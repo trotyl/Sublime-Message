@@ -51,7 +51,7 @@ namespace SublimeMessage.Views
         {
             try
             {
-                var username = idBox.Text;
+                var username = usernameBox.Text;
                 var password = passwordBox.Text;
 
                 Validator.ValidateUsername(username);
@@ -82,7 +82,7 @@ namespace SublimeMessage.Views
         {
             try
             {
-                var username = idBox.Text;
+                var username = usernameBox.Text;
                 var password = passwordBox.Text;
 
                 Validator.ValidateUsername(username);
