@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SublimeMessage.Structures
+namespace SublimeMessage.Results
 {
-    public class LoginResult
+    public class Result
     {
         public bool HasError { get; set; }
         public int StatusCode { get; set; }

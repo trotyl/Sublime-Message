@@ -60,7 +60,9 @@
     <Compile Include="Carriers\Carrier.cs" />
     <Compile Include="Carriers\CarrierException.cs" />
     <Compile Include="Helpers\Validator.cs" />
-    <Compile Include="Structures\LoginResult.cs" />
+    <Compile Include="Results\InitResult.cs" />
+    <Compile Include="Results\LoginResult.cs" />
+    <Compile Include="Results\Result.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,4 @@
-﻿using SublimeMessage.Structures;
+﻿using SublimeMessage.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +21,11 @@ namespace SublimeMessage.Carriers
             var task = new Task<LoginResult>(m_sendLoginRequest, new Tuple<string, string>(username, password));
             task.Start();
             return await task;
+        }
+
+        public static async Task<InitResult> InitPtop(string username)
+        {
+            throw new NotImplementedException();
         }
 
         public static async Task<Tuple<bool, int, IEnumerable<string>>> SendUserListRequest()

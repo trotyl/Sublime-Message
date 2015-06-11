@@ -78,18 +78,34 @@ namespace SublimeMessage.Views
             }
         }
 
-        private void ptopButton_Click(object sender, RoutedEventArgs e)
+        private async void ptopButton_Click(object sender, RoutedEventArgs e)
         {
-            string name;
-            if (string.IsNullOrWhiteSpace(idBox.Text) || idBox.Text == (string)idBox.Tag)
+            try
             {
-                name = "User" + new Random().Next();
+                var username = idBox.Text;
+                var password = passwordBox.Text;
+
+                Validator.ValidateUsername(username);
+
+                var res = await Carrier.InitPtop(username);
+                if (res.HasError)
+                {
+                    MessageBox.Show(res.Message, "登录失败");
+                    return;
+                }
+
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
             }
-            else
+            catch (ArgumentException argumentException)
             {
-                name = idBox.Text;
+                MessageBox.Show(argumentException.Message, "非法输入");
             }
-            var mainWindow = new MainWindow(true);
+            catch (CarrierException carrierException)
+            {
+                MessageBox.Show(carrierException.Message, "网络错误");
+            }
         }
 
         private void passwordHolderBox_GotFocus(object sender, RoutedEventArgs e)
