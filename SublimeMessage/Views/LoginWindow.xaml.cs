@@ -57,7 +57,7 @@ namespace SublimeMessage.Views
                 Validator.ValidateUsername(username);
                 Validator.ValidatePassword(password);
 
-                var result = await Carrier.SendLoginRequest(username, password);
+                var result = await Carrier.Login(username, password);
                 if(result.HasError)
                 {
                     throw new LoginFailedException(result.Message);

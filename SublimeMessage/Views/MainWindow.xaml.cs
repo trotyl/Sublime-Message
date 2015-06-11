@@ -28,19 +28,25 @@ namespace SublimeMessage.Views
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var res = await Carrier.SendUserListRequest();
-            if (!res.Item1)
+            try
             {
-                MessageBox.Show("获取在线列表失败！错误码" + res.Item2);
-                return;
+                var result = await Carrier.GetUsers();
+                if(result.HasError)
+                {
+                    throw new GetUsersException(result.Message);
+                }
+
+                DataContext = result.Users;
+            }
+            catch (CarrierException carrierException)
+            {
+                MessageBox.Show(carrierException.Message, "网络错误");
+            }
+            catch (GetUsersException getUsersException)
+            {
+                MessageBox.Show(getUsersException.Message, "获取用户列表失败");
             }
 
-            foreach (var user in res.Item3)
-            {
-                var block = new TextBlock();
-                block.Text = user;
-                onlineList.Items.Add(block);
-            }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace SublimeMessage.Views
                 Validator.ValidatePassword(password);
                 Validator.ValidateEquality(password, confirmPassword);
 
-                var result = await Carrier.SendRegisterRequest(username, email, password);
+                var result = await Carrier.Regester(username, email, password);
                 if(result.HasError)
                 {
                     throw new RegesterFailedException(result.Message);
