@@ -1,4 +1,5 @@
 ﻿using SublimeMessage.Carriers;
+using SublimeMessage.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,21 @@ namespace SublimeMessage.Views
 
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var username = usernameBox.Text;
+                var email = emailBox.Text;
+                var password = passwordBox.Text;
+                var confirmPassword = confirmBox.Text;
 
+                Validator.ValidateUsername(username);
+                Validator.ValidateEmail(email);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
