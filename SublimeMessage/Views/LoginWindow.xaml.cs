@@ -108,9 +108,5 @@ namespace SublimeMessage.Views
             }
         }
 
-        private void passwordHolderBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            passwordBox.Focus();
-        }
     }
 }

@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace SublimeMessage.Carriers
 {
+    public enum CarrierMode
+    {
+        Server,
+        Ptop
+    }
+
     public static class Carrier
     {
+        public static CarrierMode Mode { get; private set; }
+
         public static async Task<Tuple<bool, int, string>> SendRegisterRequest(string username, string mail, string password)
         {
             var task = new Task<Tuple<bool, int, string>>(m_sendRegisterRequest, new Tuple<string, string, string>(username, mail, password));
@@ -18,6 +26,8 @@ namespace SublimeMessage.Carriers
 
         public static async Task<LoginResult> SendLoginRequest(string username, string password)
         {
+            Mode = CarrierMode.Server;
+
             var task = new Task<LoginResult>(m_sendLoginRequest, new Tuple<string, string>(username, password));
             task.Start();
             return await task;
@@ -25,6 +35,8 @@ namespace SublimeMessage.Carriers
 
         public static async Task<InitResult> InitPtop(string username)
         {
+            Mode = CarrierMode.Ptop;
+
             throw new NotImplementedException();
         }
 
