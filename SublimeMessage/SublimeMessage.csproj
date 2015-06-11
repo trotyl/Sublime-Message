@@ -62,6 +62,7 @@
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Results\InitResult.cs" />
     <Compile Include="Results\LoginResult.cs" />
+    <Compile Include="Results\RegesterResult.cs" />
     <Compile Include="Results\Result.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>

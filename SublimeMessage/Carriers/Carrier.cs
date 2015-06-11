@@ -17,9 +17,9 @@ namespace SublimeMessage.Carriers
     {
         public static CarrierMode Mode { get; private set; }
 
-        public static async Task<Tuple<bool, int, string>> SendRegisterRequest(string username, string mail, string password)
+        public static async Task<RegesterResult> SendRegisterRequest(string username, string mail, string password)
         {
-            var task = new Task<Tuple<bool, int, string>>(m_sendRegisterRequest, new Tuple<string, string, string>(username, mail, password));
+            var task = new Task<RegesterResult>(m_sendRegisterRequest, new RegesterResult());
             task.Start();
             return await task;
         }
@@ -28,7 +28,7 @@ namespace SublimeMessage.Carriers
         {
             Mode = CarrierMode.Server;
 
-            var task = new Task<LoginResult>(m_sendLoginRequest, new Tuple<string, string>(username, password));
+            var task = new Task<LoginResult>(m_sendLoginRequest, new LoginResult());
             task.Start();
             return await task;
         }
@@ -61,7 +61,7 @@ namespace SublimeMessage.Carriers
         }
 
 
-        private static Tuple<bool, int, string> m_sendRegisterRequest(object state)
+        private static RegesterResult m_sendRegisterRequest(object state)
         {
             throw new NotImplementedException();
         }
