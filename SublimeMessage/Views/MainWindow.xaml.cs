@@ -1,4 +1,5 @@
 ﻿using SublimeMessage.Carriers;
+using SublimeMessage.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace SublimeMessage.Views
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ListsViewModel();
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)

@@ -11,5 +11,11 @@ namespace SublimeMessage.ViewModels
     {
         public IEnumerable<User> Users { get; set; }
         public IEnumerable<Group> Groups { get; set; }
+
+        public ListsViewModel()
+        {
+            Users = new List<User>();
+            Groups = new List<Group>();
+        }
     }
 }
