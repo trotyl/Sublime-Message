@@ -26,7 +26,7 @@ namespace SublimeMessage.Views
             InitializeComponent();
         }
 
-        private void submitButton_Click(object sender, RoutedEventArgs e)
+        private async void submitButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -39,6 +39,15 @@ namespace SublimeMessage.Views
                 Validator.ValidateEmail(email);
                 Validator.ValidatePassword(password);
                 Validator.ValidateEquality(password, confirmPassword);
+
+                var result = await Carrier.SendRegisterRequest(username, email, password);
+                if(result.HasError)
+                {
+                    throw new RegesterFailedException(result.Message);
+                }
+
+                MessageBox.Show($"您的SM号为：{result.Id}，请妥善保管。", "注册成功");
+                Close();
             }
             catch (ArgumentException argumentException)
             {
@@ -47,6 +56,10 @@ namespace SublimeMessage.Views
             catch (CarrierException carrierException)
             {
                 MessageBox.Show(carrierException.Message, "网络错误");
+            }
+            catch (RegesterFailedException regesterFailedException)
+            {
+                MessageBox.Show(regesterFailedException.Message, "注册失败");
             }
         }
 

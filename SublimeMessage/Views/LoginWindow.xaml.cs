@@ -57,11 +57,10 @@ namespace SublimeMessage.Views
                 Validator.ValidateUsername(username);
                 Validator.ValidatePassword(password);
 
-                var res = await Carrier.SendLoginRequest(username, password);
-                if(res.HasError)
+                var result = await Carrier.SendLoginRequest(username, password);
+                if(result.HasError)
                 {
-                    MessageBox.Show(res.Message, "登录失败");
-                    return;
+                    throw new LoginFailedException(result.Message);
                 }
                 
                 var mainWindow = new MainWindow();
@@ -75,6 +74,10 @@ namespace SublimeMessage.Views
             catch (CarrierException carrierException)
             {
                 MessageBox.Show(carrierException.Message, "网络错误");
+            }
+            catch (LoginFailedException loginFailedException)
+            {
+                MessageBox.Show(loginFailedException.Message, "登录失败");
             }
         }
 

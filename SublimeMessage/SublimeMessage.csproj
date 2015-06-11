@@ -59,6 +59,8 @@
     </Compile>
     <Compile Include="Carriers\Carrier.cs" />
     <Compile Include="Carriers\CarrierException.cs" />
+    <Compile Include="Carriers\RegesterFailedException.cs" />
+    <Compile Include="Carriers\LoginFailedException.cs" />
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Results\InitResult.cs" />
     <Compile Include="Results\LoginResult.cs" />
