@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SublimeMessage.Carriers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,7 +59,7 @@ namespace SublimeMessage.Views
             mail = mailBox.Text ?? "";
             password = passwordBox.Text;
 
-            var res = await ((App)App.Current).Carrier.SendRegisterRequest(name, mail, password);
+            var res = await Carrier.SendRegisterRequest(name, mail, password);
             if (res.Item1)
             {
                 MessageBox.Show("注册成功，您的SM号为" + res.Item3);

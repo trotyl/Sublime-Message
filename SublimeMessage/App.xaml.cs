@@ -14,11 +14,6 @@ namespace SublimeMessage
     /// </summary>
     public partial class App : Application
     {
-        public Carrier Carrier { get; set; }
 
-        public App()
-        {
-            Carrier = new Carrier();
-        }
     }
 }

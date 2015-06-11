@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SublimeMessage.Carriers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace SublimeMessage.Views
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var res = await ((App)App.Current).Carrier.SendUserListRequest();
+            var res = await Carrier.SendUserListRequest();
             if (!res.Item1)
             {
                 MessageBox.Show("获取在线列表失败！错误码" + res.Item2);

@@ -1,4 +1,5 @@
 ﻿using SublimeMessage.Helpers;
+using SublimeMessage.Carriers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,9 @@ namespace SublimeMessage.Views
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
             var signUpWindow = new RegisterWindow();
+            Hide();
             signUpWindow.ShowDialog();
+            Show();
         }
 
         private async void signInButton_Click(object sender, RoutedEventArgs e)
@@ -50,26 +53,28 @@ namespace SublimeMessage.Views
             {
                 var username = idBox.Text;
                 var password = passwordBox.Text;
+
                 Validator.ValidateUsername(username);
                 Validator.ValidatePassword(password);
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
-            
-            var res = await ((App)App.Current).Carrier.SendLoginRequest(idBox.Text, passwordBox.Text);
-            if (res.Item1)
-            {
+                var res = await Carrier.SendLoginRequest(username, password);
+                if(res.HasError)
+                {
+                    MessageBox.Show(res.Message, "登录失败");
+                    return;
+                }
+                
                 var mainWindow = new MainWindow();
                 mainWindow.Show();
-                this.Close();
+                Close();
             }
-            else
+            catch (ArgumentException argumentException)
             {
-                MessageBox.Show("登录失败，错误码" + res.Item2);
-                return;
+                MessageBox.Show(argumentException.Message, "非法输入");
+            }
+            catch (CarrierException carrierException)
+            {
+                MessageBox.Show(carrierException.Message, "网络错误");
             }
         }
 
