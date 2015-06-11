@@ -47,6 +47,11 @@ namespace SublimeMessage.Carriers
             return await task;
         }
 
+        public static async Task<GetGroupsResult> GetGroups()
+        {
+            throw new NotImplementedException();
+        }
+
         private static GetUsersResult m_getUsers(object arg)
         {
             throw new NotImplementedException();

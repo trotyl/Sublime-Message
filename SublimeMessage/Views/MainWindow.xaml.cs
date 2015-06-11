@@ -30,15 +30,22 @@ namespace SublimeMessage.Views
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var viewModel = (ListsViewModel)DataContext;
             try
             {
-                var result = await Carrier.GetUsers();
-                if(result.HasError)
+                var usersResult = await Carrier.GetUsers();
+                if(usersResult.HasError)
                 {
-                    throw new GetUsersException(result.Message);
+                    throw new GetUsersException(usersResult.Message);
                 }
+                viewModel.Users = usersResult.Users;
 
-                DataContext = result.Users;
+                var groupsResult = await Carrier.GetGroups();
+                if(groupsResult.HasError)
+                {
+                    throw new GetGroupsException(groupsResult.Message);
+                }
+                viewModel.Groups = groupsResult.Groups;
             }
             catch (CarrierException carrierException)
             {
@@ -47,6 +54,10 @@ namespace SublimeMessage.Views
             catch (GetUsersException getUsersException)
             {
                 MessageBox.Show(getUsersException.Message, "获取用户列表失败");
+            }
+            catch (GetGroupsException getGroupsException)
+            {
+                MessageBox.Show(getGroupsException.Message, "获取群组列表失败");
             }
 
         }
