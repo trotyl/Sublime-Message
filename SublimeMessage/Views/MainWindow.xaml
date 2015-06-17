@@ -34,14 +34,14 @@
             <TabItem Header="我的好友">
                 <Grid Background="#FFE5E5E5">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Users}" ItemTemplate="{StaticResource DisplayTemplate}"/>                        
+                        <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Users}" ItemTemplate="{StaticResource userDisplayTemplate}"/>                        
                     </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="我的群组">
                 <Grid Background="#FFE5E5E5">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Groups}" ItemTemplate="{StaticResource DisplayTemplate}"/>                        
+                        <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Groups}" ItemTemplate="{StaticResource groupDisplayTemplate}"/>                        
                     </ScrollViewer>
                 </Grid>
             </TabItem>
