@@ -1,4 +1,4 @@
-﻿using SublimeMessage.Results;
+﻿using SublimeMessage.Carriers.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +48,12 @@ namespace SublimeMessage.Carriers
         }
 
         public static async Task<GetGroupsResult> GetGroups()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public static async Task<AddFriendResult> AddFriend(string id)
         {
             throw new NotImplementedException();
         }

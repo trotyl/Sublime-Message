@@ -1,4 +1,5 @@
 ﻿using SublimeMessage.Carriers;
+using SublimeMessage.Carriers.Exceptions;
 using SublimeMessage.Enums;
 using SublimeMessage.Models;
 using SublimeMessage.ViewModels;
@@ -99,9 +100,33 @@ namespace SublimeMessage.Views
             searchGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void searchSubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void searchSubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            var id = searchBox.Text;
+            try
+            {
+                var addFriendResult = await Carrier.AddFriend(id);
+                if (addFriendResult.HasError)
+                {
+                    throw new AddFriendException();
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            
+        }
+
+        private void userGrid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("");
+        }
+
+        private void groupGrid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("");
         }
     }
 

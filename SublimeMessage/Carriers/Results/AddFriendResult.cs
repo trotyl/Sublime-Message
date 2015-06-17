@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SublimeMessage.Results
+namespace SublimeMessage.Carriers.Results
 {
-    public class LoginResult : Result
+    public class AddFriendResult : Result
     {
     }
 }

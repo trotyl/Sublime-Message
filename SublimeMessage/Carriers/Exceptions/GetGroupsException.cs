@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SublimeMessage.Carriers
+namespace SublimeMessage.Carriers.Exceptions
 {
     public class GetGroupsException:Exception
     {

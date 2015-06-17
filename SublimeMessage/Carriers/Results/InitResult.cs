@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SublimeMessage.Results
+namespace SublimeMessage.Carriers.Results
 {
-    public class RegesterResult : Result
+    public class InitResult : Result
     {
-        public string Id { get; set; }
     }
 }

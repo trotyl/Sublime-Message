@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SublimeMessage.Results
+namespace SublimeMessage.Carriers.Results
 {
-    public class GetGroupsResult : Result
+    public class GetUsersResult:Result
     {
-        public IEnumerable<Group> Groups { get; set; }
+        public IEnumerable<User> Users { get; set; }
     }
 }

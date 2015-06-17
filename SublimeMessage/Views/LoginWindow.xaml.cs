@@ -1,5 +1,6 @@
 ﻿using SublimeMessage.Helpers;
 using SublimeMessage.Carriers;
+using SublimeMessage.Carriers.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,8 +6,17 @@
         Title="Sublime Message 2015" Height="456" Width="256" Loaded="Window_Loaded">
     <Window.Resources>
         <converter:HasMessageConverter x:Key="HasMessageConverter"/>
-        <DataTemplate x:Key="DisplayTemplate">
-            <Grid>
+        <DataTemplate x:Key="userDisplayTemplate">
+            <Grid MouseUp="userGrid_MouseUp" Tag="{Binding Id}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                </StackPanel>
+                <TextBlock Text="{Binding HasMessage, Mode=OneWay, Converter={StaticResource HasMessageConverter}}" HorizontalAlignment="Right"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="groupDisplayTemplate">
+            <Grid MouseUp="groupGrid_MouseUp" Tag="{Binding Id}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left"/>
                     <TextBlock Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
@@ -43,8 +52,8 @@
                 <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="48"/>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="5,3"/>
-            <Button x:Name="searchSubmitButton" Content="查找" Grid.Column="1" Margin="5,3" Click="searchSubmitButton_Click"/>
+            <TextBox x:Name="searchBox" Margin="5,3" Style="{StaticResource placeHolder}" Tag="用户ID"/>
+            <Button x:Name="searchSubmitButton" Content="添加" Grid.Column="1" Margin="5,3" Click="searchSubmitButton_Click"/>
             <Button x:Name="searchCancelButton" Content="取消" Grid.Column="2" Margin="5,3" Click="searchCancelButton_Click"/>
         </Grid>
         <Grid VerticalAlignment="Bottom" Grid.Row="1">

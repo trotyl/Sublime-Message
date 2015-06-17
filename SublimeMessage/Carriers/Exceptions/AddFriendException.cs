@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SublimeMessage.Results
+namespace SublimeMessage.Carriers.Exceptions
 {
-    public class InitResult : Result
+    public class AddFriendException:Exception
     {
+
     }
 }
