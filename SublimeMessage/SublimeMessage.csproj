@@ -60,6 +60,7 @@
     <Compile Include="Carriers\Carrier.cs" />
     <Compile Include="Carriers\CarrierException.cs" />
     <Compile Include="Carriers\GetGroupsException.cs" />
+    <Compile Include="Converters\HasMessageConverter.cs" />
     <Compile Include="Results\GetGroupsResult.cs" />
     <Compile Include="Carriers\GetUsersException.cs" />
     <Compile Include="Carriers\RegesterFailedException.cs" />

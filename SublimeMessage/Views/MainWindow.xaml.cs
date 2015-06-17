@@ -1,4 +1,5 @@
 ﻿using SublimeMessage.Carriers;
+using SublimeMessage.Models;
 using SublimeMessage.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,23 +26,32 @@ namespace SublimeMessage.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ListsViewModel();
+            DataContext = new ListsViewModel
+            {
+                Users = new List<User>
+                {
+                    new User { Username = "Trotyl", Id = "123456789", HasMessage = false },
+                    new User { Username = "Another", Id = "987654321", HasMessage = true },
+                }
+            };
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            return;
+
             var viewModel = (ListsViewModel)DataContext;
             try
             {
                 var usersResult = await Carrier.GetUsers();
-                if(usersResult.HasError)
+                if (usersResult.HasError)
                 {
                     throw new GetUsersException(usersResult.Message);
                 }
                 viewModel.Users = usersResult.Users;
 
                 var groupsResult = await Carrier.GetGroups();
-                if(groupsResult.HasError)
+                if (groupsResult.HasError)
                 {
                     throw new GetGroupsException(groupsResult.Message);
                 }
@@ -59,7 +69,7 @@ namespace SublimeMessage.Views
             {
                 MessageBox.Show(getGroupsException.Message, "获取群组列表失败");
             }
-            
+
         }
     }
 }
