@@ -30,14 +30,21 @@ namespace SublimeMessage.Views
             {
                 Users = new List<User>
                 {
-                    new User { Username = "Trotyl", Id = "123456789", HasMessage = false },
-                    new User { Username = "Another", Id = "987654321", HasMessage = true },
+                    new User { Username = "Alice", Id = "111111", HasMessage = false },
+                    new User { Username = "Bob", Id = "222222", HasMessage = true },
                 }
             };
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var tmp = (ListsViewModel)DataContext;
+            tmp.Users = new List<User>
+            {
+                new User { Username = "Alice", Id = "111111", HasMessage = false },
+                new User { Username = "Bob", Id = "222222", HasMessage = false },
+                new User { Username = "Cindy", Id = "333333", HasMessage = true },
+            };
             return;
 
             var viewModel = (ListsViewModel)DataContext;
