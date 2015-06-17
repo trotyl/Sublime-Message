@@ -30,8 +30,8 @@ namespace SublimeMessage.Views
             {
                 Users = new List<User>
                 {
-                    new User { Username = "Alice", Id = "111111", HasMessage = false },
-                    new User { Username = "Bob", Id = "222222", HasMessage = true },
+                    new User { Name = "Alice", Id = "111111", HasMessage = false },
+                    new User { Name = "Bob", Id = "222222", HasMessage = true },
                 }
             };
         }
@@ -41,9 +41,9 @@ namespace SublimeMessage.Views
             var tmp = (ListsViewModel)DataContext;
             tmp.Users = new List<User>
             {
-                new User { Username = "Alice", Id = "111111", HasMessage = false },
-                new User { Username = "Bob", Id = "222222", HasMessage = false },
-                new User { Username = "Cindy", Id = "333333", HasMessage = true },
+                new User { Name = "Alice", Id = "111111", HasMessage = false },
+                new User { Name = "Bob", Id = "222222", HasMessage = false },
+                new User { Name = "Cindy", Id = "333333", HasMessage = true },
             };
             return;
 

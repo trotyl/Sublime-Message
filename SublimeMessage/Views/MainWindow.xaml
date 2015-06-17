@@ -16,7 +16,7 @@
                             <DataTemplate>
                                 <Grid>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Username, Mode=OneWay}" HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left"/>
                                         <TextBlock Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
                                     </StackPanel>
                                     <TextBlock Text="{Binding HasMessage, Mode=OneWay, Converter={StaticResource HasMessageConverter}}" HorizontalAlignment="Right"/>

@@ -8,6 +8,8 @@ namespace SublimeMessage.Models
 {
     public class Group
     {
-
+        public string Name { get; set; }
+        public string Id { get; set; }
+        public string HasMessage { get; set; }
     }
 }
