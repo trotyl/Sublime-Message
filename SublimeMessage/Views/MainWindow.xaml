@@ -6,39 +6,53 @@
         Title="Sublime Message 2015" Height="456" Width="256" Loaded="Window_Loaded">
     <Window.Resources>
         <converter:HasMessageConverter x:Key="HasMessageConverter"/>
+        <DataTemplate x:Key="DisplayTemplate">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                </StackPanel>
+                <TextBlock Text="{Binding HasMessage, Mode=OneWay, Converter={StaticResource HasMessageConverter}}" HorizontalAlignment="Right"/>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
     <Grid Background="#FFE6E6E6">
-        <TabControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+        <TabControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0">
             <TabItem Header="我的好友">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Users}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left"/>
-                                        <TextBlock Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                                    </StackPanel>
-                                    <TextBlock Text="{Binding HasMessage, Mode=OneWay, Converter={StaticResource HasMessageConverter}}" HorizontalAlignment="Right"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Users}" ItemTemplate="{StaticResource DisplayTemplate}"/>                        
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="我的群组">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Groups}">
-                        
-                    </ListBox>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Groups}" ItemTemplate="{StaticResource DisplayTemplate}"/>                        
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Grid VerticalAlignment="Bottom" Height="32">
+        <Grid x:Name="searchGrid" Visibility="Collapsed" VerticalAlignment="Bottom" Height="32" Background="#FFE6E6E6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="48"/>
+                <ColumnDefinition Width="48"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Margin="5,3"/>
+            <Button x:Name="searchSubmitButton" Content="查找" Grid.Column="1" Margin="5,3" Click="searchSubmitButton_Click"/>
+            <Button x:Name="searchCancelButton" Content="取消" Grid.Column="2" Margin="5,3" Click="searchCancelButton_Click"/>
+        </Grid>
+        <Grid VerticalAlignment="Bottom" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="addFriendButton" Content="添加好友" Margin="5" Padding="3,1"/>
-                <Button x:Name="addGroupButton" Content="添加群组" Margin="5" Padding="3,1"/>
+                <Button x:Name="addFriendButton" Content="添加好友" Margin="5" Padding="3,1" Click="addFriendButton_Click"/>
+                <Button x:Name="addGroupButton" Content="添加群组" Margin="5" Padding="3,1" Click="addGroupButton_Click"/>
             </StackPanel>
         </Grid>
+
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using SublimeMessage.Carriers;
+using SublimeMessage.Enums;
 using SublimeMessage.Models;
 using SublimeMessage.ViewModels;
 using System;
@@ -23,6 +24,8 @@ namespace SublimeMessage.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private SearchObjective m_searchObjective;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -78,5 +81,28 @@ namespace SublimeMessage.Views
             }
 
         }
+
+        private void addFriendButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGrid.Visibility = Visibility.Visible;
+            m_searchObjective = SearchObjective.User;
+        }
+
+        private void addGroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGrid.Visibility = Visibility.Visible;
+            m_searchObjective = SearchObjective.Group;
+        }
+
+        private void searchCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void searchSubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+
 }

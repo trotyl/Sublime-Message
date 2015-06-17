@@ -61,6 +61,7 @@
     <Compile Include="Carriers\CarrierException.cs" />
     <Compile Include="Carriers\GetGroupsException.cs" />
     <Compile Include="Converters\HasMessageConverter.cs" />
+    <Compile Include="Enums\SearchObjective.cs" />
     <Compile Include="Results\GetGroupsResult.cs" />
     <Compile Include="Carriers\GetUsersException.cs" />
     <Compile Include="Carriers\RegesterFailedException.cs" />
@@ -82,6 +83,9 @@
     </Compile>
     <Compile Include="Views\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchWindow.xaml.cs">
+      <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
