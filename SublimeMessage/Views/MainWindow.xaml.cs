@@ -5,6 +5,7 @@ using SublimeMessage.Models;
 using SublimeMessage.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,27 +31,11 @@ namespace SublimeMessage.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ListsViewModel
-            {
-                Users = new List<User>
-                {
-                    new User { Name = "Alice", Id = "111111", HasMessage = false },
-                    new User { Name = "Bob", Id = "222222", HasMessage = true },
-                }
-            };
+            DataContext = new ListsViewModel();
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var tmp = (ListsViewModel)DataContext;
-            tmp.Users = new List<User>
-            {
-                new User { Name = "Alice", Id = "111111", HasMessage = false },
-                new User { Name = "Bob", Id = "222222", HasMessage = false },
-                new User { Name = "Cindy", Id = "333333", HasMessage = true },
-            };
-            return;
-
             var viewModel = (ListsViewModel)DataContext;
             try
             {
@@ -59,14 +44,14 @@ namespace SublimeMessage.Views
                 {
                     throw new GetUsersException(usersResult.Message);
                 }
-                viewModel.Users = usersResult.Users;
+                Array.ForEach(usersResult.Users.ToArray(), x => viewModel.Users.Add(x));
 
                 var groupsResult = await Carrier.GetGroups();
                 if (groupsResult.HasError)
                 {
                     throw new GetGroupsException(groupsResult.Message);
                 }
-                viewModel.Groups = groupsResult.Groups;
+                Array.ForEach(groupsResult.Groups.ToArray(), x => viewModel.Groups.Add(x));
             }
             catch (CarrierException carrierException)
             {
@@ -111,8 +96,7 @@ namespace SublimeMessage.Views
                 {
                     throw new AddFriendException(addFriendResult.Message);
                 }
-                var user = addFriendResult.User;
-                viewModel.AddUser(user);
+                viewModel.Users.Add(addFriendResult.User);
             }
             catch (CarrierException carrierException)
             {

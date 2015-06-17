@@ -1,6 +1,8 @@
 ﻿using SublimeMessage.Carriers.Results;
+using SublimeMessage.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,20 +44,46 @@ namespace SublimeMessage.Carriers
 
         public static async Task<GetUsersResult> GetUsers()
         {
-            var task = new Task<GetUsersResult>(m_getUsers, null);
-            task.Start();
-            return await task;
+            return new GetUsersResult
+            {
+                HasError = false,
+                StatusCode = 200,
+                Message = "",
+                Users = new List<User>
+                {
+                    new User { Name = "Alice", Id = "111111", HasMessage = false },
+                    new User { Name = "Bob", Id = "222222", HasMessage = false },
+                    new User { Name = "Cindy", Id = "333333", HasMessage = true },
+                }
+            };
         }
 
         public static async Task<GetGroupsResult> GetGroups()
         {
-            throw new NotImplementedException();
+            return new GetGroupsResult
+            {
+                HasError = false,
+                StatusCode = 200,
+                Message = "",
+                Groups = new List<Group>(),
+            };
         }
 
 
         public static async Task<AddFriendResult> AddFriend(string id)
         {
-            throw new NotImplementedException();
+            return new AddFriendResult
+            {
+                HasError = false,
+                StatusCode = 200,
+                Message = "",
+                User = new User
+                {
+                    Id = "444444",
+                    Name = "Dave",
+                    HasMessage = false,
+                },
+            };
         }
 
         private static GetUsersResult m_getUsers(object arg)

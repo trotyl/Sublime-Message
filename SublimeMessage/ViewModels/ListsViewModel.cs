@@ -1,6 +1,7 @@
 ﻿using SublimeMessage.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace SublimeMessage.ViewModels
 {
     public class ListsViewModel : INotifyPropertyChanged
     {
-        private List<User> m_users;
-        public List<User> Users
+        private ObservableCollection<User> m_users;
+        public ObservableCollection<User> Users
         {
             get
             {
@@ -24,8 +25,8 @@ namespace SublimeMessage.ViewModels
             }
         }
 
-        private List<Group> m_groups;
-        public List<Group> Groups
+        private ObservableCollection<Group> m_groups;
+        public ObservableCollection<Group> Groups
         {
             get
             {
@@ -40,8 +41,8 @@ namespace SublimeMessage.ViewModels
 
         public ListsViewModel()
         {
-            Users = new List<User>();
-            Groups = new List<Group>();
+            Users = new ObservableCollection<User>();
+            Groups = new ObservableCollection<Group>();
         }
 
         public void AddUser(User user)

@@ -46,13 +46,13 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Grid x:Name="searchGrid" Visibility="Collapsed" VerticalAlignment="Bottom" Height="32" Background="#FFE6E6E6">
+        <Grid x:Name="searchGrid" Visibility="Visible" VerticalAlignment="Bottom" Height="32" Background="#FFE6E6E6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="48"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="searchBox" Margin="5,3" Style="{StaticResource placeHolder}" Tag="用户ID"/>
+            <TextBox x:Name="searchBox" Margin="5,3" Padding="5,5,0,0" Style="{StaticResource placeHolder}" Tag="用户ID"/>
             <Button x:Name="searchSubmitButton" Content="添加" Grid.Column="1" Margin="5,3" Click="searchSubmitButton_Click"/>
             <Button x:Name="searchCancelButton" Content="取消" Grid.Column="2" Margin="5,3" Click="searchCancelButton_Click"/>
         </Grid>
