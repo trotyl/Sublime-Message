@@ -10,8 +10,8 @@ namespace SublimeMessage.ViewModels
 {
     public class ListsViewModel : INotifyPropertyChanged
     {
-        private IEnumerable<User> m_users;
-        public IEnumerable<User> Users
+        private List<User> m_users;
+        public List<User> Users
         {
             get
             {
@@ -24,8 +24,8 @@ namespace SublimeMessage.ViewModels
             }
         }
 
-        private IEnumerable<Group> m_groups;
-        public IEnumerable<Group> Groups
+        private List<Group> m_groups;
+        public List<Group> Groups
         {
             get
             {
@@ -44,6 +44,18 @@ namespace SublimeMessage.ViewModels
             Groups = new List<Group>();
         }
 
+        public void AddUser(User user)
+        {
+            Users.Add(user);
+            OnPropertyChanged(nameof(Users));
+        }
+
+        public void AddGroup(Group group)
+        {
+            Groups.Add(group);
+            OnPropertyChanged(nameof(Groups));
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -53,5 +65,6 @@ namespace SublimeMessage.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }

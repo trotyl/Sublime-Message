@@ -9,6 +9,6 @@ namespace SublimeMessage.Carriers.Results
 {
     public class GetGroupsResult : Result
     {
-        public IEnumerable<Group> Groups { get; set; }
+        public List<Group> Groups { get; set; }
     }
 }

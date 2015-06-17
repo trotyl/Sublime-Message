@@ -103,20 +103,25 @@ namespace SublimeMessage.Views
         private async void searchSubmitButton_Click(object sender, RoutedEventArgs e)
         {
             var id = searchBox.Text;
+            var viewModel = (ListsViewModel)DataContext;
             try
             {
                 var addFriendResult = await Carrier.AddFriend(id);
                 if (addFriendResult.HasError)
                 {
-                    throw new AddFriendException();
+                    throw new AddFriendException(addFriendResult.Message);
                 }
+                var user = addFriendResult.User;
+                viewModel.AddUser(user);
             }
-            catch (Exception)
+            catch (CarrierException carrierException)
             {
-
-                throw;
+                MessageBox.Show(carrierException.Message, "网络错误");
             }
-            
+            catch (AddFriendException addFriendException)
+            {
+                MessageBox.Show(addFriendException.Message, "添加好友失败");
+            }
         }
 
         private void userGrid_MouseUp(object sender, MouseButtonEventArgs e)

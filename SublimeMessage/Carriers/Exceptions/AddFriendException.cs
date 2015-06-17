@@ -8,6 +8,6 @@ namespace SublimeMessage.Carriers.Exceptions
 {
     public class AddFriendException:Exception
     {
-
+        public AddFriendException(string message): base(message) { }
     }
 }

@@ -9,6 +9,6 @@ namespace SublimeMessage.Carriers.Results
 {
     public class GetUsersResult:Result
     {
-        public IEnumerable<User> Users { get; set; }
+        public List<User> Users { get; set; }
     }
 }
