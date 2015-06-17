@@ -59,7 +59,7 @@ namespace SublimeMessage.Views
             {
                 MessageBox.Show(getGroupsException.Message, "获取群组列表失败");
             }
-
+            
         }
     }
 }
