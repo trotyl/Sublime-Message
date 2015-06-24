@@ -20,9 +20,15 @@ namespace SublimeMessage.Carriers
     {
         public static CarrierMode Mode { get; private set; }
 
-        private static Dictionary<string, List<Message>> m_userMessagesDic;
-        private static Dictionary<string, List<Message>> m_groupMessagesDic;
-        private static Dictionary<string, Task> m_messageCallbackDic;
+        private static Dictionary<string, User> m_usersDic = new Dictionary<string, User>
+        {
+            ["Alice"] = new User { Name = "Alice", Id = "111111", HasMessage = false },
+            ["Bob"] = new User { Name = "Bob", Id = "222222", HasMessage = false },
+            ["Cindy"] = new User { Name = "Cindy", Id = "333333", HasMessage = true },
+        };
+        private static Dictionary<string, List<Message>> m_userMessagesDic = new Dictionary<string, List<Message>> { };
+        private static Dictionary<string, List<Message>> m_groupMessagesDic = new Dictionary<string, List<Message>> { };
+        private static Dictionary<string, Task> m_messageCallbackDic = new Dictionary<string, Task> { };
 
         public static Task UserOnline;
         public static Task UserOffline;
@@ -69,12 +75,7 @@ namespace SublimeMessage.Carriers
                 HasError = false,
                 StatusCode = 200,
                 Message = "",
-                Users = new List<User>
-                {
-                    new User { Name = "Alice", Id = "111111", HasMessage = false },
-                    new User { Name = "Bob", Id = "222222", HasMessage = false },
-                    new User { Name = "Cindy", Id = "333333", HasMessage = true },
-                }
+                Users = m_usersDic.Values.ToArray()
             };
         }
 
