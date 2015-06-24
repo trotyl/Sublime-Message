@@ -116,7 +116,8 @@ namespace SublimeMessage.Views
 
         private void groupGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("");
+            var chatWindow = new ChatWindow(EntityType.Group, (sender as Grid).Tag as string);
+            chatWindow.Show();
         }
     }
 
