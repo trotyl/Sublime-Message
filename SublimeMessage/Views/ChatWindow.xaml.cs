@@ -1,4 +1,7 @@
-﻿using SublimeMessage.Enums;
+﻿using SublimeMessage.Carriers;
+using SublimeMessage.Enums;
+using SublimeMessage.Models;
+using SublimeMessage.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +25,19 @@ namespace SublimeMessage.Views
     {
         private EntityType m_type;
         private string m_id;
+        private IEnumerable<Message> m_messages;
 
         public ChatWindow()
         {
             InitializeComponent();
+            DataContext = new MessagesViewModel();
         }
 
         public ChatWindow(EntityType type, string id) : this() { m_type = type; m_id = id; }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            m_messages = Carrier.RetriveMessages(m_type, m_id);
         }
     }
 }

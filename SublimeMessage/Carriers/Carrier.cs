@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SublimeMessage.Enums;
 
 namespace SublimeMessage.Carriers
 {
@@ -18,6 +19,9 @@ namespace SublimeMessage.Carriers
     public static class Carrier
     {
         public static CarrierMode Mode { get; private set; }
+
+        private static Dictionary<string, List<Message>> m_userMessagesDic;
+        private static Dictionary<string, List<Message>> m_groupMessagesDic;
 
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
@@ -33,6 +37,18 @@ namespace SublimeMessage.Carriers
             var task = new Task<LoginResult>(m_sendLoginRequest, new LoginResult());
             task.Start();
             return await task;
+        }
+
+        internal static IEnumerable<Message> RetriveMessages(EntityType type, string id)
+        {
+            if(type == EntityType.User)
+            {
+                return m_userMessagesDic.ContainsKey(id) ? m_userMessagesDic[id] : new List<Message>();
+            }
+            else
+            {
+                return m_groupMessagesDic.ContainsKey(id) ? m_groupMessagesDic[id] : new List<Message>();
+            }
         }
 
         public static async Task<InitResult> InitPtop(string username)

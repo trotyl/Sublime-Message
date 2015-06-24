@@ -70,6 +70,7 @@
     <Compile Include="Carriers\Exceptions\LoginFailedException.cs" />
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Carriers\Results\GetUsersResult.cs" />
     <Compile Include="Carriers\Results\InitResult.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Carriers\Results\RegesterResult.cs" />
     <Compile Include="Carriers\Results\Result.cs" />
     <Compile Include="ViewModels\ListsViewModel.cs" />
+    <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="Views\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>
