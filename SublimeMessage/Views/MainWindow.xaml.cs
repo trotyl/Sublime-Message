@@ -1,4 +1,5 @@
-﻿using SublimeMessage.Carriers;
+﻿using SublimeMessage.AsyncStates;
+using SublimeMessage.Carriers;
 using SublimeMessage.Carriers.Exceptions;
 using SublimeMessage.Enums;
 using SublimeMessage.Models;
@@ -52,6 +53,8 @@ namespace SublimeMessage.Views
                     throw new GetGroupsException(groupsResult.Message);
                 }
                 Array.ForEach(groupsResult.Groups.ToArray(), x => viewModel.Groups.Add(x));
+                Carrier.UserOnline = new Task(x => viewModel.Users.Add(((AsyncUserState)x).User), null);
+                Carrier.UserOffline = new Task(x => viewModel.Users.Remove(((AsyncUserState)x).User), null);
             }
             catch (CarrierException carrierException)
             {

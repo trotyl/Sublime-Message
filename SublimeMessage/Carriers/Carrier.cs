@@ -22,6 +22,10 @@ namespace SublimeMessage.Carriers
 
         private static Dictionary<string, List<Message>> m_userMessagesDic;
         private static Dictionary<string, List<Message>> m_groupMessagesDic;
+        private static Dictionary<string, Task> m_messageCallbackDic;
+
+        public static Task UserOnline;
+        public static Task UserOffline;
 
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
