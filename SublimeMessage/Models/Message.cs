@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SublimeMessage.Models
 {
-    class Message
+    public class Message
     {
     }
 }

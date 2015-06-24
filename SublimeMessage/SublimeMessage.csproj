@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AsyncStates\AsyncMessageState.cs" />
     <Compile Include="AsyncStates\AsyncUserState.cs" />
     <Compile Include="Carriers\Exceptions\AddFriendException.cs" />
     <Compile Include="Carriers\Carrier.cs" />

@@ -53,12 +53,21 @@ namespace SublimeMessage.Views
                     throw new GetGroupsException(groupsResult.Message);
                 }
                 Array.ForEach(groupsResult.Groups.ToArray(), x => viewModel.Groups.Add(x));
-                Carrier.UserOnline = new Task(x => 
-                    Dispatcher.Invoke(() => 
-                        viewModel.Users.Add(((AsyncUserState)x).User)), new AsyncUserState());
-                Carrier.UserOffline = new Task(x =>
-                    Dispatcher.Invoke(() =>
-                        viewModel.Users.Remove(((AsyncUserState)x).User)), new AsyncUserState());
+                Carrier.UserOnline = x => 
+                {
+                    Dispatcher.Invoke(() => viewModel.Users.Add(x));
+                    return true;
+                };
+                Carrier.UserOffline = x =>
+                {
+                    Dispatcher.Invoke(() => viewModel.Users.Remove(x));
+                    return true;
+                };
+                Carrier.NewMessage = x =>
+                {
+                    Dispatcher.Invoke(() => x.HasMessage = true);
+                    return true;
+                };
             }
             catch (CarrierException carrierException)
             {
@@ -87,9 +96,12 @@ namespace SublimeMessage.Views
             m_searchObjective = EntityType.Group;
         }
 
-        private void searchCancelButton_Click(object sender, RoutedEventArgs e)
+        private async void searchCancelButton_Click(object sender, RoutedEventArgs e)
         {
             searchGrid.Visibility = Visibility.Collapsed;
+            await Task.Delay(3000);
+            Carrier.Test();
+            var tmp = DataContext;
         }
 
         private async void searchSubmitButton_Click(object sender, RoutedEventArgs e)

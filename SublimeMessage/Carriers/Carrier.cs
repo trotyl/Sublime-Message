@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SublimeMessage.Enums;
+using SublimeMessage.AsyncStates;
 
 namespace SublimeMessage.Carriers
 {
@@ -22,16 +23,17 @@ namespace SublimeMessage.Carriers
 
         private static Dictionary<string, User> m_usersDic = new Dictionary<string, User>
         {
-            ["Alice"] = new User { Name = "Alice", Id = "111111", HasMessage = false },
-            ["Bob"] = new User { Name = "Bob", Id = "222222", HasMessage = false },
-            ["Cindy"] = new User { Name = "Cindy", Id = "333333", HasMessage = true },
+            ["111111"] = new User { Name = "Alice", Id = "111111", HasMessage = false },
+            ["222222"] = new User { Name = "Bob", Id = "222222", HasMessage = false },
+            ["333333"] = new User { Name = "Cindy", Id = "333333", HasMessage = true },
         };
         private static Dictionary<string, List<Message>> m_userMessagesDic = new Dictionary<string, List<Message>> { };
         private static Dictionary<string, List<Message>> m_groupMessagesDic = new Dictionary<string, List<Message>> { };
         private static Dictionary<string, Task> m_messageCallbackDic = new Dictionary<string, Task> { };
 
-        public static Task UserOnline;
-        public static Task UserOffline;
+        public static Predicate<User> UserOnline;
+        public static Predicate<User> UserOffline;
+        public static Predicate<User> NewMessage;
 
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
@@ -105,6 +107,11 @@ namespace SublimeMessage.Carriers
                     HasMessage = false,
                 },
             };
+        }
+
+        internal static void Test()
+        {
+            NewMessage(m_usersDic["111111"]);
         }
 
         private static GetUsersResult m_getUsers(object arg)
