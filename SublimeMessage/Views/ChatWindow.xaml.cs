@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SublimeMessage.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,19 @@ namespace SublimeMessage.Views
     /// </summary>
     public partial class ChatWindow : Window
     {
+        private EntityType m_type;
+        private string m_id;
+
         public ChatWindow()
         {
             InitializeComponent();
+        }
+
+        public ChatWindow(EntityType type, string id) : this() { m_type = type; m_id = id; }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

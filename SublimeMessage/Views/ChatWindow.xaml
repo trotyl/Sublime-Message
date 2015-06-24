@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SublimeMessage.Views"
         mc:Ignorable="d"
-        Title="ChatWindow" Height="600" Width="800">
+        Title="ChatWindow" Height="600" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -14,9 +14,9 @@
         </Grid.RowDefinitions>
         <WebBrowser x:Name="contentBrower" Margin="5" Grid.Row="0"/>
         <TextBox x:Name="editBox" Margin="5" Grid.Row="1"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" >
-            <Button x:Name="clearButton" Width="60" Margin="10,5" Content="清除"/>
-            <Button x:Name="submit" Width="60" Margin="10,5" Content="发送"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="0,0,0,5" >
+            <Button x:Name="clearButton" Width="60" Margin="5,0" Content="清除"/>
+            <Button x:Name="submit" Width="60" Margin="5,0" Content="发送"/>
         </StackPanel>
         
     </Grid>

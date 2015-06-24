@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SublimeMessage.Enums
 {
-    public enum SearchObjective
+    public enum EntityType
     {
         User,
         Group,

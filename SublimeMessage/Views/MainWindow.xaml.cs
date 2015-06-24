@@ -26,7 +26,7 @@ namespace SublimeMessage.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private SearchObjective m_searchObjective;
+        private EntityType m_searchObjective;
 
         public MainWindow()
         {
@@ -71,13 +71,13 @@ namespace SublimeMessage.Views
         private void addFriendButton_Click(object sender, RoutedEventArgs e)
         {
             searchGrid.Visibility = Visibility.Visible;
-            m_searchObjective = SearchObjective.User;
+            m_searchObjective = EntityType.User;
         }
 
         private void addGroupButton_Click(object sender, RoutedEventArgs e)
         {
             searchGrid.Visibility = Visibility.Visible;
-            m_searchObjective = SearchObjective.Group;
+            m_searchObjective = EntityType.Group;
         }
 
         private void searchCancelButton_Click(object sender, RoutedEventArgs e)
@@ -110,7 +110,8 @@ namespace SublimeMessage.Views
 
         private void userGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("");
+            var chatWindow = new ChatWindow(EntityType.User, (sender as Grid).Tag as string);
+            chatWindow.Show();
         }
 
         private void groupGrid_MouseUp(object sender, MouseButtonEventArgs e)

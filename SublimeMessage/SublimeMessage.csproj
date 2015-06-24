@@ -62,7 +62,7 @@
     <Compile Include="Carriers\Exceptions\CarrierException.cs" />
     <Compile Include="Carriers\Exceptions\GetGroupsException.cs" />
     <Compile Include="Converters\HasMessageConverter.cs" />
-    <Compile Include="Enums\SearchObjective.cs" />
+    <Compile Include="Enums\EntityType.cs" />
     <Compile Include="Carriers\Results\AddFriendResult.cs" />
     <Compile Include="Carriers\Results\GetGroupsResult.cs" />
     <Compile Include="Carriers\Exceptions\GetUsersException.cs" />
