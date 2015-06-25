@@ -37,7 +37,8 @@ namespace SublimeMessage.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            m_messages = Carrier.RetriveMessages(m_type, m_id);
+            var viewModel = (MessagesViewModel)DataContext;
+            Carrier.RetriveMessages(m_type, m_id, x => viewModel.Messages.Add(x));
         }
     }
 }

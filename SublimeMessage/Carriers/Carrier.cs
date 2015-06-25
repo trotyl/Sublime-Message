@@ -29,11 +29,11 @@ namespace SublimeMessage.Carriers
         };
         private static Dictionary<string, List<Message>> m_userMessagesDic = new Dictionary<string, List<Message>> { };
         private static Dictionary<string, List<Message>> m_groupMessagesDic = new Dictionary<string, List<Message>> { };
-        private static Dictionary<string, Task> m_messageCallbackDic = new Dictionary<string, Task> { };
+        private static Dictionary<string, Action<Message>> m_messageCallbackDic = new Dictionary<string, Action<Message>> { };
 
-        public static Predicate<User> UserOnline;
-        public static Predicate<User> UserOffline;
-        public static Predicate<User> NewMessage;
+        public static Action<User> UserOnline;
+        public static Action<User> UserOffline;
+        public static Action<User> NewMessage;
 
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
@@ -51,15 +51,23 @@ namespace SublimeMessage.Carriers
             return await task;
         }
 
-        internal static IEnumerable<Message> RetriveMessages(EntityType type, string id)
+        public static void RetriveMessages(EntityType type, string id, Action<Message> callback)
         {
             if(type == EntityType.User)
             {
-                return m_userMessagesDic.ContainsKey(id) ? m_userMessagesDic[id] : new List<Message>();
+                if(!m_userMessagesDic.ContainsKey(id))
+                {
+                    m_userMessagesDic[id] = new List<Message>();
+                }
+                Array.ForEach(m_userMessagesDic[id].ToArray(), callback);
             }
             else
             {
-                return m_groupMessagesDic.ContainsKey(id) ? m_groupMessagesDic[id] : new List<Message>();
+                if (!m_groupMessagesDic.ContainsKey(id))
+                {
+                    m_groupMessagesDic[id] = new List<Message>();
+                }
+                Array.ForEach(m_groupMessagesDic[id].ToArray(), callback);
             }
         }
 
@@ -111,7 +119,10 @@ namespace SublimeMessage.Carriers
 
         internal static void Test()
         {
-            NewMessage(m_usersDic["111111"]);
+            m_usersDic["222222"].HasMessage = true;
+            m_usersDic["222222"].HasMessage = true;
+            m_usersDic["333333"].HasMessage = false;
+            m_usersDic["333333"].HasMessage = false;
         }
 
         private static GetUsersResult m_getUsers(object arg)
