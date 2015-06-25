@@ -23,8 +23,8 @@ namespace SublimeMessage.Views
     /// </summary>
     public partial class ChatWindow : Window
     {
-        private EntityType m_type;
-        private string m_id;
+        private EntityType m_type = EntityType.User;
+        private string m_id = "000000";
         private IEnumerable<Message> m_messages;
 
         public ChatWindow()
@@ -35,10 +35,13 @@ namespace SublimeMessage.Views
 
         public ChatWindow(EntityType type, string id) : this() { m_type = type; m_id = id; }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var viewModel = (MessagesViewModel)DataContext;
             Carrier.RetriveMessages(m_type, m_id, x => viewModel.Messages.Add(x));
+
+            await Task.Delay(3000);
+            Carrier.Test();
         }
     }
 }

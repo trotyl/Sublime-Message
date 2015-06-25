@@ -29,7 +29,8 @@ namespace SublimeMessage.Carriers
         };
         private static Dictionary<string, List<Message>> m_userMessagesDic = new Dictionary<string, List<Message>> { };
         private static Dictionary<string, List<Message>> m_groupMessagesDic = new Dictionary<string, List<Message>> { };
-        private static Dictionary<string, Action<Message>> m_messageCallbackDic = new Dictionary<string, Action<Message>> { };
+        private static Dictionary<string, Action<Message>> m_userCallbackDic = new Dictionary<string, Action<Message>> { };
+        private static Dictionary<string, Action<Message>> m_groupCallbackDic = new Dictionary<string, Action<Message>> { };
 
         public static Action<User> UserOnline;
         public static Action<User> UserOffline;
@@ -55,6 +56,7 @@ namespace SublimeMessage.Carriers
         {
             if(type == EntityType.User)
             {
+                m_userCallbackDic[id] = callback;
                 if(!m_userMessagesDic.ContainsKey(id))
                 {
                     m_userMessagesDic[id] = new List<Message>();
@@ -63,6 +65,7 @@ namespace SublimeMessage.Carriers
             }
             else
             {
+                m_groupCallbackDic[id] = callback;
                 if (!m_groupMessagesDic.ContainsKey(id))
                 {
                     m_groupMessagesDic[id] = new List<Message>();
@@ -119,10 +122,7 @@ namespace SublimeMessage.Carriers
 
         internal static void Test()
         {
-            m_usersDic["222222"].HasMessage = true;
-            m_usersDic["222222"].HasMessage = true;
-            m_usersDic["333333"].HasMessage = false;
-            m_usersDic["333333"].HasMessage = false;
+            
         }
 
         private static GetUsersResult m_getUsers(object arg)

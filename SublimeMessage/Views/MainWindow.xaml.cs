@@ -84,12 +84,9 @@ namespace SublimeMessage.Views
             m_searchObjective = EntityType.Group;
         }
 
-        private async void searchCancelButton_Click(object sender, RoutedEventArgs e)
+        private void searchCancelButton_Click(object sender, RoutedEventArgs e)
         {
             searchGrid.Visibility = Visibility.Collapsed;
-            await Task.Delay(3000);
-            Carrier.Test();
-            var tmp = DataContext;
         }
 
         private async void searchSubmitButton_Click(object sender, RoutedEventArgs e)

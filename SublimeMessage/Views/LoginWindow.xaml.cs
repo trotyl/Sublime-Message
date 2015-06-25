@@ -54,7 +54,7 @@ namespace SublimeMessage.Views
             {
                 var username = usernameBox.Text;
                 var password = passwordBox.Text;
-
+                
                 Validator.ValidateUsername(username);
                 Validator.ValidatePassword(password);
 

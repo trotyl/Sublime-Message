@@ -25,6 +25,11 @@ namespace SublimeMessage.ViewModels
             }
         }
 
+        public MessagesViewModel()
+        {
+            Messages = new ObservableCollection<Message>();
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
