@@ -20,6 +20,7 @@ namespace SublimeMessage.Carriers
     public static class Carrier
     {
         public static CarrierMode Mode { get; private set; }
+        
 
         private static Dictionary<string, User> m_usersDic = new Dictionary<string, User>
         {
@@ -39,6 +40,7 @@ namespace SublimeMessage.Carriers
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
             var task = new Task<RegesterResult>(m_sendRegisterRequest, new RegesterResult());
+
             task.Start();
             return await task;
         }
