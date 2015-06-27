@@ -10,6 +10,7 @@ using SublimeMessage.Enums;
 using SublimeMessage.AsyncStates;
 using TctpUtil;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace SublimeMessage.Carriers
 {
@@ -25,16 +26,54 @@ namespace SublimeMessage.Carriers
         private static TctpClient m_client;
         private static int m_count;
         
-        private static Dictionary<string, User> m_usersDic = new Dictionary<string, User> { };
-        private static Dictionary<string, List<Message>> m_userMessagesDic = new Dictionary<string, List<Message>> { };
-        private static Dictionary<string, List<Message>> m_groupMessagesDic = new Dictionary<string, List<Message>> { };
-        private static Dictionary<string, Action<Message>> m_userCallbackDic = new Dictionary<string, Action<Message>> { };
-        private static Dictionary<string, Action<Message>> m_groupCallbackDic = new Dictionary<string, Action<Message>> { };
-        private static Dictionary<string, Task> m_requestCallbackDic = new Dictionary<string, Task> { };
+        private static Dictionary<string, User> m_usersDic;
+        private static Dictionary<string, List<Message>> m_userMessagesDic;
+        private static Dictionary<string, List<Message>> m_groupMessagesDic;
+        private static Dictionary<string, Action<Message>> m_userCallbackDic;
+        private static Dictionary<string, Action<Message>> m_groupCallbackDic;
+        private static Dictionary<int, Task> m_requestCallbackDic;
 
         public static Action<User> OnUserOnline;
         public static Action<User> OnUserOffline;
         public static Action<User> OnNewMessage;
+
+        static Carrier()
+        {
+            m_client = new TctpClient();
+            m_count = 0;
+
+            m_usersDic = new Dictionary<string, User> { };
+            m_userMessagesDic = new Dictionary<string, List<Message>> { };
+            m_groupMessagesDic = new Dictionary<string, List<Message>> { };
+            m_userCallbackDic = new Dictionary<string, Action<Message>> { };
+            m_groupCallbackDic = new Dictionary<string, Action<Message>> { };
+            m_requestCallbackDic = new Dictionary<int, Task> { };
+
+            m_client.OnReceive = x =>
+            {
+                var message = JsonConvert.DeserializeObject<dynamic>(x);
+                DealWith(message);
+                return;
+            };
+        }
+
+        private static void DealWith(dynamic message)
+        {
+            var typeString = message.Type as string ?? "";
+            var types = typeString.Split('.');
+            var index = (int)(message.Index);
+            switch (types[0])
+            {
+                case "Control":
+                    if(m_requestCallbackDic.ContainsKey(index))
+                    {
+                        m_requestCallbackDic[index].Start();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
