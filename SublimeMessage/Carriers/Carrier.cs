@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SublimeMessage.Enums;
 using SublimeMessage.AsyncStates;
+using TctpUtil;
+using System.Threading;
 
 namespace SublimeMessage.Carriers
 {
@@ -20,28 +22,24 @@ namespace SublimeMessage.Carriers
     public static class Carrier
     {
         public static CarrierMode Mode { get; private set; }
+        private static TctpClient m_client;
+        private static int m_count;
         
-
-        private static Dictionary<string, User> m_usersDic = new Dictionary<string, User>
-        {
-            ["111111"] = new User { Name = "Alice", Id = "111111", HasMessage = false },
-            ["222222"] = new User { Name = "Bob", Id = "222222", HasMessage = false },
-            ["333333"] = new User { Name = "Cindy", Id = "333333", HasMessage = true },
-        };
+        private static Dictionary<string, User> m_usersDic = new Dictionary<string, User> { };
         private static Dictionary<string, List<Message>> m_userMessagesDic = new Dictionary<string, List<Message>> { };
         private static Dictionary<string, List<Message>> m_groupMessagesDic = new Dictionary<string, List<Message>> { };
         private static Dictionary<string, Action<Message>> m_userCallbackDic = new Dictionary<string, Action<Message>> { };
         private static Dictionary<string, Action<Message>> m_groupCallbackDic = new Dictionary<string, Action<Message>> { };
+        private static Dictionary<string, Task> m_requestCallbackDic = new Dictionary<string, Task> { };
 
-        public static Action<User> UserOnline;
-        public static Action<User> UserOffline;
-        public static Action<User> NewMessage;
+        public static Action<User> OnUserOnline;
+        public static Action<User> OnUserOffline;
+        public static Action<User> OnNewMessage;
 
         public static async Task<RegesterResult> Regester(string username, string mail, string password)
         {
-            var task = new Task<RegesterResult>(m_sendRegisterRequest, new RegesterResult());
-
-            task.Start();
+            var task = new Task<RegesterResult>(m_registerRequestDummy, new RegesterResult());
+            var messageId = unchecked(Interlocked.Increment(ref m_count));
             return await task;
         }
 
@@ -133,7 +131,7 @@ namespace SublimeMessage.Carriers
         }
 
 
-        private static RegesterResult m_sendRegisterRequest(object state)
+        private static RegesterResult m_registerRequestDummy(object state)
         {
             throw new NotImplementedException();
         }

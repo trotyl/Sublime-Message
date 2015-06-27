@@ -53,9 +53,9 @@ namespace SublimeMessage.Views
                     throw new GetGroupsException(groupsResult.Message);
                 }
                 Array.ForEach(groupsResult.Groups.ToArray(), x => viewModel.Groups.Add(x));
-                Carrier.UserOnline = x => Dispatcher.Invoke(() => viewModel.Users.Add(x));
-                Carrier.UserOffline = x =>Dispatcher.Invoke(() => viewModel.Users.Remove(x));
-                Carrier.NewMessage = x => Dispatcher.Invoke(() => x.HasMessage = true);
+                Carrier.OnUserOnline = x => Dispatcher.Invoke(() => viewModel.Users.Add(x));
+                Carrier.OnUserOffline = x =>Dispatcher.Invoke(() => viewModel.Users.Remove(x));
+                Carrier.OnNewMessage = x => Dispatcher.Invoke(() => x.HasMessage = true);
             }
             catch (CarrierException carrierException)
             {

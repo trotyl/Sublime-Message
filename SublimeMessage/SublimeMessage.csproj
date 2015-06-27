@@ -66,6 +66,8 @@
     <Compile Include="Carriers\Carrier.cs" />
     <Compile Include="Carriers\Exceptions\CarrierException.cs" />
     <Compile Include="Carriers\Exceptions\GetGroupsException.cs" />
+    <Compile Include="Carriers\Messages\BaseMessage.cs" />
+    <Compile Include="Carriers\Messages\RegisterMessage.cs" />
     <Compile Include="Converters\HasMessageConverter.cs" />
     <Compile Include="Converters\TimeConverter.cs" />
     <Compile Include="Enums\EntityType.cs" />
