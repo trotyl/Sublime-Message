@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SublimeMessage.Carriers.Results
 {
-    public class RegesterResult : Result
+    public class RegisterResult : Result
     {
         public string Id { get; set; }
     }

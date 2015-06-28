@@ -87,7 +87,7 @@
     <Compile Include="Carriers\Results\GetUsersResult.cs" />
     <Compile Include="Carriers\Results\InitResult.cs" />
     <Compile Include="Carriers\Results\LoginResult.cs" />
-    <Compile Include="Carriers\Results\RegesterResult.cs" />
+    <Compile Include="Carriers\Results\RegisterResult.cs" />
     <Compile Include="Carriers\Results\Result.cs" />
     <Compile Include="ViewModels\ListsViewModel.cs" />
     <Compile Include="ViewModels\MessagesViewModel.cs" />

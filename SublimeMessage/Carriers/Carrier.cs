@@ -11,6 +11,7 @@ using SublimeMessage.AsyncStates;
 using TctpUtil;
 using System.Threading;
 using Newtonsoft.Json;
+using SublimeMessage.Carriers.Messages;
 
 namespace SublimeMessage.Carriers
 {
@@ -75,10 +76,20 @@ namespace SublimeMessage.Carriers
             }
         }
 
-        public static async Task<RegesterResult> Regester(string username, string mail, string password)
+        public static async Task<RegisterResult> Regester(string username, string mail, string password)
         {
-            var task = new Task<RegesterResult>(m_registerRequestDummy, new RegesterResult());
-            var messageId = unchecked(Interlocked.Increment(ref m_count));
+            var index = unchecked(Interlocked.Increment(ref m_count));
+            var message = new RegisterMessage
+            {
+                Type = "Control.Register",
+                Index = index,
+                Time = DateTime.Now,
+                Username = username,
+                Email = mail,
+                Password = password
+            };
+            var task = new Task<RegisterResult>(x => x as RegisterResult, new RegisterResult());
+            m_requestCallbackDic[index] = task;
             return await task;
         }
 
@@ -86,7 +97,7 @@ namespace SublimeMessage.Carriers
         {
             Mode = CarrierMode.Server;
 
-            var task = new Task<LoginResult>(m_sendLoginRequest, new LoginResult());
+            var task = new Task<LoginResult>(m_loginRequest, new LoginResult());
             task.Start();
             return await task;
         }
@@ -170,12 +181,12 @@ namespace SublimeMessage.Carriers
         }
 
 
-        private static RegesterResult m_registerRequestDummy(object state)
+        private static RegisterResult m_registerRequest(object state)
         {
             throw new NotImplementedException();
         }
 
-        private static LoginResult m_sendLoginRequest(object state)
+        private static LoginResult m_loginRequest(object state)
         {
             throw new NotImplementedException();
         }
